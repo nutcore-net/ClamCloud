@@ -1,0 +1,11 @@
+101: Authorization Failed
+102: Not A User
+103: Permission Denied
+104: Expired Token
+105: Login Failed
+201: Update Not Succeed
+301: Reported Thread
+302: Report Not Valid
+501: Laravel Error
+502: Unknown Error
+999: Not Supported Yet

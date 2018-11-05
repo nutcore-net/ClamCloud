@@ -1,0 +1,363 @@
+{
+    "front":{
+        "/":"homepage(login)",
+        "/install":"jump here if not installed",
+        "/threads":{
+            "/":"show all threads",
+            "/new":"write a thread",
+            "/[0-9]+":"show thread by id",
+
+            "/notfound":"jump here if not found",
+            "/blocked":"jump here if thread is blocked"
+        },
+        "/votes":{
+            "/":"show all votes",
+            "/new":"add a vote",
+            "/[0-9]+":"show vote info",
+            "/manage/[0-9]+":"manage a vote"
+        },
+        "/users":{
+            "/":"show all users (perm)",
+            "/[0-9]+":"show user info",
+            "/add":"add new user",
+            "/oauth":"list and manage oauth"
+        },
+        "/events":{
+            "/":"show all events",
+            "/new":"add new event",
+            "/[0-9]+":"show event info",
+            "/perm/[0-9]+":"manage event permission (perm)",
+            "/manage/[0-9]+":"settings of event",
+            "/apply/[0-9]+":"apply for event",
+            "/check/[0-9]+":"see persons and check them (perm)",
+            "/applies":{
+                "/":"show self applies",
+                "/[0-9]+":"see and accept applies (perm)"
+            }
+        },
+        "/groups":{
+            "/":"show all groups",
+            "/new":"set a new group",
+            "/[0-9]+":"show group info",
+            "/perm/[0-9]+":"manage group permission (perm)",
+            "/manage/[0-9]+":"settings of group",
+            "/apply/[0-9]+":"apply for group",
+            "/applies":{
+                "/":"show self applies",
+                "/[0-9]+":"see and accept applies (perm)"
+            }
+        },
+        "/msg":{
+            "/":"show all messages",
+            "/[0-9]+":"show messages with someone",
+            "/group":{
+                "/[0-9]+":"show and send messages in group",
+                "/send/[0-9]+":"send messages to group (forward)"
+            }
+        },
+        "/manage":{
+            "/":"show menu",
+            "/msg":"show msg settings",
+            "/info":"show self settings",
+            "/security":"show security settings",
+            "/attach":"manage attachments",
+            "/system":"set up system (perm)",
+            "/perm":"set system permissions"
+        },
+        "/attach/[0-9]+":"return attach"
+    },
+    "backend":{
+        "/api":{
+            "/system":{
+                "/status":{
+                    "method":"GET",
+                    "params":[]
+                },
+                "/settings":{
+                    "method":"POST",
+                    "params":["uSecret"]
+                },
+                "/setSetting":{
+                    "method":"POST",
+                    "params":["uSecret","key","value"]
+                },
+                "/getLogs":{
+                    "method":"POST",
+                    "params":["uSecret"]
+                },
+                "/clearLogs":{
+                    "method":"POST",
+                    "params":["uSecret"]
+                }
+            },
+            "/threads":{
+                "/getThreadList":{
+                    "method":"POST",
+                    "params":["uSecret"]
+                },
+                "/getThread":{
+                    "method":"POST",
+                    "params":["uSecret","tdID"]
+                },
+                "/getThreadReplies":{
+                    "method":"POST",
+                    "params":["uSecret","tdID"]
+                },
+                "/addThread":{
+                    "method":"POST",
+                    "params":["uSecret","tdInfo"]
+                },
+                "/addThreadReply":{
+                    "method":"POST",
+                    "params":["uSecret","tdID","tdInfo"]
+                },
+                "/editThread":{
+                    "method":"POST",
+                    "params":["uSecret","tdID","tdInfo"]
+                },
+                "/reportThread":{
+                    "method":"POST",
+                    "params":["uSecret","tdID"]
+                },
+                "/getReportedThreads":{
+                    "method":"POST",
+                    "params":["uSecret"]
+                },
+                "/unblockThread":{
+                    "method":"POST",
+                    "params":["uSecret","tdID"]
+                },
+                "/deleteThread":{
+                    "method":"POST",
+                    "params":["uSecret","tdID"]
+                }
+            },
+            "/votes":{
+                "/getVoteList":{
+                    "method":"GET",
+                    "params":[]
+                },
+                "/getVoteInfo":{
+                    "method":"POST",
+                    "params":["uSecret","vtID"]
+                },
+                "/addVote":{
+                    "method":"POST",
+                    "params":["uSecret","vtInfo"]
+                },
+                "/editVote":{
+                    "method":"POST",
+                    "params":["uSecret","vtInfo"]
+                },
+                "/deleteVote":{
+                    "method":"POST",
+                    "params":["uSecret","vtID"]
+                },
+                "/selectVote":{
+                    "method":"POST",
+                    "params":["uSecret","vtID"]
+                }
+            },
+            "/users":{
+                "/loginUser":{
+                    "method":"POST",
+                    "params":["uInput","uPswd"]
+                },
+                "/loginOAuth":{
+                    "method":"GET",
+                    "params":["code","state"]
+                },
+                "/bindOAuth":{
+                    "method":"GET",
+                    "params":["uID","code","state"]
+                },
+                "/getUserInfo":{
+                    "method":"GET",
+                    "params":["uID"]
+                },
+                "/getUserList":{
+                    "method":"POST",
+                    "params":["uSecret"]
+                },
+                "/addUser":{
+                    "method":"POST",
+                    "params":["uSecret","uID","eInfo"]
+                },
+                "/editUser":{
+                    "method":"POST",
+                    "params":["uSecret","uID","eInfo"]
+                },
+                "/deleteUser":{
+                    "method":"POST",
+                    "params":["uSecret","uID"]
+                }
+            },
+            "/events":{
+                "/getEventList":{
+                    "method":"GET",
+                    "params":[]
+                },
+                "/getEventInfo":{
+                    "method":"POST",
+                    "params":["uSecret","evtID"]
+                },
+                "/addEvent":{
+                    "method":"POST",
+                    "params":["uSecret","evtInfo"]
+                },
+                "/editEvent":{
+                    "method":"POST",
+                    "params":["uSecret","evtInfo"]
+                },
+                "/applyEvent":{
+                    "method":"POST",
+                    "params":["uSecret","evtID","msg"]
+                },
+                "/deleteEvent":{
+                    "method":"POST",
+                    "params":["uSecret","evtID"]
+                },
+                "/checkUserAtEvent":{
+                    "method":"POST",
+                    "params":["uSecret","uID","evtID"]
+                },
+                "/uncheckUserAtEvent":{
+                    "method":"POST",
+                    "params":["uSecret","uID","evtID"]
+                },
+                "/getEventApplies":{
+                    "method":"POST",
+                    "params":["uSecret","evtID"]
+                },
+                "/getSelfApplies":{
+                    "method":"POST",
+                    "params":["uSecret","evtID"]
+                },
+                "/treatEventApply":{
+                    "method":"POST",
+                    "params":["uSecret","evtAID","method"]
+                },
+                "/getEventPerm":{
+                    "method":"POST",
+                    "params":["uSecret","evtID"]
+                },
+                "/setEventPerm":{
+                    "method":"POST",
+                    "params":["uSecret","evtID","pInfo"]
+                }
+            },
+            "/groups":{
+                "/getGroupList":{
+                    "method":"GET",
+                    "params":[]
+                },
+                "/getGroupInfo":{
+                    "method":"POST",
+                    "params":["uSecret","gpID"]
+                },
+                "/addGroup":{
+                    "method":"POST",
+                    "params":["uSecret","gpInfo"]
+                },
+                "/editGroup":{
+                    "method":"POST",
+                    "params":["uSecret","gpInfo"]
+                },
+                "/applyGroup":{
+                    "method":"POST",
+                    "params":["uSecret","gpID","msg"]
+                },
+                "/getGroupApplies":{
+                    "method":"POST",
+                    "params":["uSecret","gpID"]
+                },
+                "/getSelfApplies":{
+                    "method":"POST",
+                    "params":["uSecret","gpID"]
+                },
+                "/treatGroupApply":{
+                    "method":"POST",
+                    "params":["uSecret","gpAID","method"]
+                },
+                "/getGroupPerm":{
+                    "method":"POST",
+                    "params":["uSecret","gpID"]
+                },
+                "/setGroupPerm":{
+                    "method":"POST",
+                    "params":["uSecret","gpID","pInfo"]
+                }
+            },
+            "/msg":{
+                "/getContactList":{
+                    "method":"POST",
+                    "params":["uSecret"]
+                },
+                "/getMsgWithUser":{
+                    "method":"POST",
+                    "params":["uSecret","uID"]
+                },
+                "/getMsgInGroup":{
+                    "method":"POST",
+                    "params":["uSecret","gpID"]
+                },
+                "/getMsgFromGroup":{
+                    "method":"POST",
+                    "params":["uSecret","gpID"]
+                },
+                "/getMsgToGroup":{
+                    "method":"POST",
+                    "params":["uSecret","gpID"]
+                },
+                "/sendMsgWithUser":{
+                    "method":"POST",
+                    "params":["uSecret","uID","msg"]
+                },
+                "/sendMsgInGroup":{
+                    "method":"POST",
+                    "params":["uSecret","gpID","msg"]
+                },
+                "/replyMsgID":{
+                    "method":"POST",
+                    "params":["uSecret","msgID","msg"]
+                },
+                "/sendMsgToGroup":{
+                    "method":"POST",
+                    "params":["uSecret","gpID","msg"]
+                },
+                "/callbackMsg":{
+                    "method":"POST",
+                    "params":["uSecret","msgID"]
+                }
+            },
+            "/attach":{
+                "/getAttachList":{
+                    "method":"POST",
+                    "params":["uSecret"]
+                },
+                "/getAttachInfo":{
+                    "method":"POST",
+                    "params":["uSecret","aID"]
+                },
+                "/addAttach":{
+                    "method":"POST",
+                    "params":["uSecret","aInfo","aContent"]
+                },
+                "/editAttach":{
+                    "method":"POST",
+                    "params":["uSecret","aID","aInfo"]
+                },
+                "/deleteAttach":{
+                    "method":"POST",
+                    "params":["uSecret","aID"]
+                }
+            },
+            "/vendor":{
+                "/getQRCode":{
+                    "method":"POST",
+                    "params":["content"]
+                }
+            }
+        }
+    }
+}
